@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/screens/game_screen.dart';
 import 'package:hangman/screens/main_menu_screen.dart';
 
 void main() {
@@ -18,7 +19,11 @@ class Hangman extends StatelessWidget {
           textTheme: ThemeData.light().textTheme.copyWith(
               headline1: TextStyle(fontSize: 70.0),
               headline6: TextStyle(fontSize: 18.0, color: Colors.white))),
-      home: MainMenu(),
+      initialRoute: "/",
+      routes: {
+        '/' : (context) => MainMenu(),
+        GameScreen.routeName : (context) => GameScreen(),
+      },
     );
   }
 }

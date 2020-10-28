@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hangman/screens/game_screen.dart';
 
 class MainMenu extends StatelessWidget {
   @override
@@ -24,7 +25,7 @@ class MainMenu extends StatelessWidget {
               height: 200,
               color: theme.primaryColor,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment:    MainAxisAlignment.spaceEvenly,
                 children: [
                   Row(
                     children: [
@@ -34,7 +35,9 @@ class MainMenu extends StatelessWidget {
                           child: FlatButton(
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-                            onPressed: () {  },
+                            onPressed: () {
+                              Navigator.pushNamed(context, GameScreen.routeName);
+                            },
                             child: Text("1 Player",style: theme
                                 .textTheme
                                 .headline6),
