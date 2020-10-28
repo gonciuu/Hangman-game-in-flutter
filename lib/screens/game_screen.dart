@@ -47,12 +47,14 @@ class _GameScreenState extends State<GameScreen> {
               padding: const EdgeInsets.fromLTRB(30, 10, 10, 0),
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: Text(
-                  "Movie",
-                  style: TextStyle(
-                      fontSize: 20.0,
-                      color: theme.primaryColor,
-                      fontFamily: "ArchitectsDaughter"),
+                child: FittedBox(
+                  child: Text(
+                    "Movie",
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        color: theme.primaryColor,
+                        fontFamily: "ArchitectsDaughter"),
+                  ),
                 ),
               ),
             ),

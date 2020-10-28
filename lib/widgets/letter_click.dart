@@ -15,8 +15,10 @@ class LetterClick extends StatelessWidget {
       width: deviceHeight*0.06,
       height: deviceHeight*0.06,
       alignment: Alignment.center,
-      child: Text(
-      "A",style: theme.textTheme.headline6.copyWith(fontSize: 30.0),
+      child: FittedBox(
+        child: Text(
+        "A",style: theme.textTheme.headline6.copyWith(fontSize: 30.0),
+        ),
       ),
     );
   }
