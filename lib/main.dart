@@ -18,6 +18,7 @@ class Hangman extends StatelessWidget {
           fontFamily: "ArchitectsDaughter",
           textTheme: ThemeData.light().textTheme.copyWith(
               headline1: TextStyle(fontSize: 70.0),
+              headline5: TextStyle(fontSize: 24.0, color: Colors.black),
               headline6: TextStyle(fontSize: 18.0, color: Colors.white))),
       initialRoute: "/",
       routes: {
