@@ -6,23 +6,26 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         backgroundColor: theme.accentColor,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              "HANG\nMAN\n_____",
-              textAlign: TextAlign.center,
-              style: theme
-                  .textTheme
-                  .headline1
-                  .copyWith(color: theme.primaryColor),
-            ),SizedBox(height: 80,),
+            FittedBox(
+              child: Text(
+                "HANG\nMAN\n_____",
+                textAlign: TextAlign.center,
+                style: theme
+                    .textTheme
+                    .headline1
+                    .copyWith(color: theme.primaryColor),
+              ),
+            ),SizedBox( height: deviceHeight*0.1),
             Container(
               width: double.infinity,
-              height: 200,
+              height: deviceHeight*0.24,
               color: theme.primaryColor,
               child: Column(
                 mainAxisAlignment:    MainAxisAlignment.spaceEvenly,
@@ -38,9 +41,11 @@ class MainMenu extends StatelessWidget {
                             onPressed: () {
                               Navigator.pushNamed(context, GameScreen.routeName);
                             },
-                            child: Text("1 Player",style: theme
-                                .textTheme
-                                .headline6),
+                            child: FittedBox(
+                              child: Text("1 Player",style: theme
+                                  .textTheme
+                                  .headline6),
+                            ),
                             color: theme.accentColor,
                             padding:const EdgeInsets.symmetric(vertical: 15,horizontal: 30),
                           ),
@@ -53,9 +58,11 @@ class MainMenu extends StatelessWidget {
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
                             onPressed: () {  },
-                            child: Text("2 Players",style: theme
-                                .textTheme
-                                .headline6),
+                            child: FittedBox(
+                              child: Text("2 Players",style: theme
+                                  .textTheme
+                                  .headline6),
+                            ),
                             color: theme.accentColor,
                             padding:const EdgeInsets.symmetric(vertical: 15,horizontal: 30),
                           ),
@@ -72,9 +79,11 @@ class MainMenu extends StatelessWidget {
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
                             onPressed: () {  },
-                            child: Text("High scores",style: theme
-                                .textTheme
-                                .headline6),
+                            child: FittedBox(
+                              child: Text("High scores",style: theme
+                                  .textTheme
+                                  .headline6),
+                            ),
                             color: theme.accentColor,
                             padding:const EdgeInsets.symmetric(vertical: 15,horizontal: 30),
                           ),
@@ -87,9 +96,11 @@ class MainMenu extends StatelessWidget {
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
                             onPressed: () {  },
-                            child: Text("Info",style: theme
-                                .textTheme
-                                .headline6),
+                            child: FittedBox(
+                              child: Text("Info",style: theme
+                                  .textTheme
+                                  .headline6),
+                            ),
                             color: theme.accentColor,
                             padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
                           ),
