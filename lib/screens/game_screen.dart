@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/widgets/guess_letter.dart';
+import 'package:hangman/widgets/letter_click.dart';
 
 class GameScreen extends StatefulWidget {
   static const routeName = "/game";
@@ -42,7 +44,13 @@ class _GameScreenState extends State<GameScreen> {
                 ),),
               ),
             ),
-            Divider(color: theme.primaryColor,thickness: 2.0,)
+            Divider(color: theme.primaryColor,thickness: 2.0,),SizedBox(  height: deviceHeight*0.1,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for(int i=0;i<=6;i++) GuessLetter(),
+              ],
+            )
           ],
         ),
       ),
