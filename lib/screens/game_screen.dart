@@ -105,7 +105,7 @@ class _GameScreenState extends State<GameScreen> {
                       children: [
                         //show alphabet
                         ...this.clickAlphabetLetters.map((letter) =>
-                          LetterClick(letter.title,letter.isChoose,letter.isContainsInWord)
+                          LetterClick(letter.title,letter.isChoose,letter.isContainsInWord,alphabetLetterClick)
                         ).toList()
                       ],
                     ),
@@ -138,5 +138,17 @@ class _GameScreenState extends State<GameScreen> {
     // TODO: implement initState
     super.initState();
     getWord();
+  }
+
+  //alphabet letter click
+  void alphabetLetterClick(String title){
+    print(title);
+    setState(() {
+      for (int i = 0; i < this.randomWord.length; i++)
+        if(this.randomWord[i].toUpperCase() == title)
+          guessedLetters[i].isGuessed = true;
+        
+      this.clickAlphabetLetters.where((letter) => letter.title==title).toList()[0].isChoose = true;
+    });
   }
 }
