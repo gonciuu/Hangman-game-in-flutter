@@ -11,8 +11,8 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  final RandomWord _randomWord = RandomWord();
-
+  final RandomWord _randomWordApi = RandomWord();
+  String randomWord="ds";
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -52,7 +52,7 @@ class _GameScreenState extends State<GameScreen> {
                 alignment: Alignment.bottomLeft,
                 child: FittedBox(
                   child: Text(
-                    "Movie",
+                    randomWord,
                     style: TextStyle(
                         fontSize: 20.0,
                         color: theme.primaryColor,
@@ -71,7 +71,7 @@ class _GameScreenState extends State<GameScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (int i = 0; i <= 6; i++) GuessLetter(),
+                  for(int i=0;i<randomWord.length;i++) GuessLetter()
               ],
             ),
             SizedBox(
@@ -88,11 +88,17 @@ class _GameScreenState extends State<GameScreen> {
       ),
     );
   }
-  Future getWord() async => print(await _randomWord.getWord());
+  //----------------| Get random word |---------------------
+  Future getWord() async {
+    Map map = await _randomWordApi.getWord();
+    setState(() => this.randomWord = map['word']);
+  }
+  //========================================================
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getWord();
+
   }
 }
