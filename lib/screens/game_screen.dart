@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hangman/http/random_word.dart';
 import 'package:hangman/models/alphabel_letter.dart';
+import 'package:hangman/models/game.dart';
 import '../models/guess_letter_model.dart';
 import '../widgets/guess_letter.dart';
 import '../widgets/letter_click.dart';
@@ -14,7 +15,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   final RandomWord _randomWordApi = RandomWord();
-  String randomWord = "Hangman";
+  final Game game = Game(time: 0,score: 0,lives: 10, word: "Hangman");
 
   //random word letters
   List<GuessLetterModel> guessedLetters = List();
@@ -48,7 +49,7 @@ class _GameScreenState extends State<GameScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          "lives : 4",
+                          "lives : ${this.game.lives}",
                           style: theme.textTheme.headline5,
                         ),
                         Image.network(
@@ -68,7 +69,7 @@ class _GameScreenState extends State<GameScreen> {
                       alignment: Alignment.bottomLeft,
                       child: FittedBox(
                         child: Text(
-                          randomWord,
+                          game.word,
                           style: TextStyle(
                               fontSize: 20.0,
                               color: theme.primaryColor,
@@ -120,18 +121,17 @@ class _GameScreenState extends State<GameScreen> {
   Future getWord() async {
     Map map = await _randomWordApi.getWord();
     setState(() {
-      this.randomWord = map['word'];
-      for (int i = 0; i < this.randomWord.length; i++)
-        guessedLetters.add(GuessLetterModel(this.randomWord[i], false));
+      this.game.word = map['word'];
+      for (int i = 0; i < this.game.word.length; i++)
+        guessedLetters.add(GuessLetterModel(this.game.word[i], false));
         getAlphabet();
     });
-    print(this.randomWord);
   }
 
   //========================================================
 
   //----------------| get alphabel and setup it into list |---------------------
-  void getAlphabet() => setState(() => AlphabetLetter.alphabet.forEach((letter) => this.clickAlphabetLetters.add(AlphabetLetter(letter.toUpperCase(),false,this.randomWord.contains(letter)))));
+  void getAlphabet() => setState(() => AlphabetLetter.alphabet.forEach((letter) => this.clickAlphabetLetters.add(AlphabetLetter(letter.toUpperCase(),false,this.game.word.contains(letter)))));
 
   @override
   void initState() {
@@ -142,12 +142,16 @@ class _GameScreenState extends State<GameScreen> {
 
   //---------------------| handle alphabet letter click |------------------------------
   void alphabetLetterClick(String title){
+    bool isContains = false;
     setState(() {
       //set letter as guessed
-      for (int i = 0; i < this.randomWord.length; i++){
-        if(this.randomWord[i].toUpperCase() == title)
+      for (int i = 0; i < this.game.word.length; i++){
+        if(this.game.word[i].toUpperCase() == title){
           guessedLetters[i].isGuessed = true;
+          isContains = true;
+        }
       }
+      if(!isContains) this.game.lives--;
       //set alphabet letter as choose
       this.clickAlphabetLetters.where((letter) => letter.title==title).toList()[0].isChoose = true;
     });
