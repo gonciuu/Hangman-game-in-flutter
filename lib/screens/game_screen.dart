@@ -15,7 +15,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   final RandomWord _randomWordApi = RandomWord();
   String randomWord = "Hangman";
-  
+
   //random word letters
   List<GuessLetterModel> guessedLetters = List();
   //alphabet
@@ -105,7 +105,7 @@ class _GameScreenState extends State<GameScreen> {
                       children: [
                         //show alphabet
                         ...this.clickAlphabetLetters.map((letter) =>
-                          LetterClick(letter.title,letter.isChoose)
+                          LetterClick(letter.title,letter.isChoose,letter.isContainsInWord)
                         ).toList()
                       ],
                     ),
@@ -123,6 +123,7 @@ class _GameScreenState extends State<GameScreen> {
       this.randomWord = map['word'];
       for (int i = 0; i < this.randomWord.length; i++)
         guessedLetters.add(GuessLetterModel(this.randomWord[i], false));
+        getAlphabet();
     });
     print(this.randomWord);
   }
@@ -130,13 +131,12 @@ class _GameScreenState extends State<GameScreen> {
   //========================================================
 
   //get alphabel and setup it into list
-  void getAlphabet() => setState(() => AlphabetLetter.alphabet.forEach((letter) => this.clickAlphabetLetters.add(AlphabetLetter(letter.toUpperCase(),false))));
+  void getAlphabet() => setState(() => AlphabetLetter.alphabet.forEach((letter) => this.clickAlphabetLetters.add(AlphabetLetter(letter.toUpperCase(),false,this.randomWord.contains(letter)))));
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getAlphabet();
     getWord();
   }
 }

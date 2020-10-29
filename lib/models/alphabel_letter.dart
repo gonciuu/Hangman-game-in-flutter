@@ -7,6 +7,7 @@ class AlphabetLetter{
 
   String title;
   bool isChoose;
-  AlphabetLetter(this.title,this.isChoose);
+  bool isContainsInWord;
+  AlphabetLetter(this.title, this.isChoose, this.isContainsInWord);
 
 }
