@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 
 class GuessLetter extends StatelessWidget {
+
+  //------------| The word letter widget _ - not guessed letter A-guessed letter |-------------
+
   final String title;
   final bool isGuessed;
   GuessLetter(this.title,this.isGuessed);

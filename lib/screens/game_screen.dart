@@ -130,7 +130,7 @@ class _GameScreenState extends State<GameScreen> {
 
   //========================================================
 
-  //get alphabel and setup it into list
+  //----------------| get alphabel and setup it into list |---------------------
   void getAlphabet() => setState(() => AlphabetLetter.alphabet.forEach((letter) => this.clickAlphabetLetters.add(AlphabetLetter(letter.toUpperCase(),false,this.randomWord.contains(letter)))));
 
   @override
@@ -140,15 +140,17 @@ class _GameScreenState extends State<GameScreen> {
     getWord();
   }
 
-  //alphabet letter click
+  //---------------------| handle alphabet letter click |------------------------------
   void alphabetLetterClick(String title){
-    print(title);
     setState(() {
-      for (int i = 0; i < this.randomWord.length; i++)
+      //set letter as guessed
+      for (int i = 0; i < this.randomWord.length; i++){
         if(this.randomWord[i].toUpperCase() == title)
           guessedLetters[i].isGuessed = true;
-        
+      }
+      //set alphabet letter as choose
       this.clickAlphabetLetters.where((letter) => letter.title==title).toList()[0].isChoose = true;
     });
   }
+  //====================================================================================
 }

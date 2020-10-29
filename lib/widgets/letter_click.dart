@@ -2,11 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LetterClick extends StatelessWidget {
+
+  //---------------------| Alphabet letter widget |--------------------------
+
   final String title;
   final bool isChoose;
   final bool isContainsInWord;
   final Function letterClick;
+
   LetterClick(this.title,this.isChoose,this.isContainsInWord,this.letterClick);
+
 
   @override
   Widget build(BuildContext context) {

@@ -102,7 +102,7 @@ class MainMenu extends StatelessWidget {
                                   .headline6),
                             ),
                             color: theme.accentColor,
-                            padding: EdgeInsets.symmetric(vertical: 15,horizontal: 30),
+                            padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 30),
                           ),
                         ),
                       )
