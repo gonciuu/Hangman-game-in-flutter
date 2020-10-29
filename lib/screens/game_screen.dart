@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hangman/http/random_word.dart';
-import 'package:hangman/models/alphabel_letter.dart';
-import 'package:hangman/models/game.dart';
+import '../models/alphabel_letter.dart';
+import '../models/game.dart';
+import '../screens/lose_screen.dart';
 import '../models/guess_letter_model.dart';
 import '../widgets/guess_letter.dart';
 import '../widgets/letter_click.dart';
@@ -14,13 +17,28 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+
+  Timer _timer;
+
   final RandomWord _randomWordApi = RandomWord();
-  final Game game = Game(time: 0,score: 0,lives: 10, word: "Hangman");
+  final Game game = Game(time: 30,score: 0,lives: 10, word: "Hangman");
 
   //random word letters
   List<GuessLetterModel> guessedLetters = List();
   //alphabet
   List<AlphabetLetter> clickAlphabetLetters = List();
+
+  void startTime(){
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if(this.game.time<=0){
+          lose();
+        }else{
+          this.game.time--;
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +75,7 @@ class _GameScreenState extends State<GameScreen> {
                           fit: BoxFit.cover,
                         ),
                         Text(
-                          "0:30",
+                          "0:${this.game.time<10 ? "0":""}${this.game.time}",
                           style: theme.textTheme.headline5,
                         ),
                       ],
@@ -126,6 +144,7 @@ class _GameScreenState extends State<GameScreen> {
         guessedLetters.add(GuessLetterModel(this.game.word[i], false));
         getAlphabet();
     });
+    startTime();
   }
 
   //========================================================
@@ -135,9 +154,13 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getWord();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
   }
 
   //---------------------| handle alphabet letter click |------------------------------
@@ -151,10 +174,20 @@ class _GameScreenState extends State<GameScreen> {
           isContains = true;
         }
       }
-      if(!isContains) this.game.lives--;
-      //set alphabet letter as choose
       this.clickAlphabetLetters.where((letter) => letter.title==title).toList()[0].isChoose = true;
+
+      //bad letter click - not contains in the word
+      if(!isContains) this.game.lives--;
+
+      //game lose
+      if(this.game.lives<=0)
+       lose();
+
+      this.game.time = 30;
     });
   }
   //====================================================================================
+
+  void lose() => Navigator.pushReplacementNamed(context, LoseScreen.routeName,arguments: {"score" : this.game.score});
+
 }
