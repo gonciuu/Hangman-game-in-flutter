@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/http/random_word.dart';
 import '../widgets/guess_letter.dart';
 import '../widgets/letter_click.dart';
 
@@ -10,6 +11,8 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  final RandomWord _randomWord = RandomWord();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -84,5 +87,12 @@ class _GameScreenState extends State<GameScreen> {
         ),
       ),
     );
+  }
+  Future getWord() async => print(await _randomWord.getWord());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getWord();
   }
 }
