@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hangman/http/random_word.dart';
+import 'package:hangman/models/alphabel_letter.dart';
 import '../models/guess_letter_model.dart';
 import '../widgets/guess_letter.dart';
 import '../widgets/letter_click.dart';
@@ -14,7 +15,11 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   final RandomWord _randomWordApi = RandomWord();
   String randomWord = "Hangman";
+  
+  //random word letters
   List<GuessLetterModel> guessedLetters = List();
+  //alphabet
+  List<AlphabetLetter> clickAlphabetLetters = List();
 
   @override
   Widget build(BuildContext context) {
@@ -83,20 +88,28 @@ class _GameScreenState extends State<GameScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       //setup word in guessLetter widget
-                      ...this.guessedLetters.map((letter) =>
-                              GuessLetter(letter.title, letter.isGuessed)).toList()
+                      ...this
+                          .guessedLetters
+                          .map((letter) =>
+                              GuessLetter(letter.title, letter.isGuessed))
+                          .toList()
                     ],
                   ),
                   SizedBox(
                     height: deviceHeight * 0.1,
                   ),
-                  for (int i = 0; i <= 3; i++)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Wrap(
+                      alignment: WrapAlignment.start,
                       children: [
-                        for (int j = 0; j <= 5; j++) LetterClick(),
+                        //show alphabet
+                        ...this.clickAlphabetLetters.map((letter) =>
+                          LetterClick(letter.title,letter.isChoose)
+                        ).toList()
                       ],
-                    )
+                    ),
+                  )
                 ],
               ),
       ),
@@ -116,10 +129,14 @@ class _GameScreenState extends State<GameScreen> {
 
   //========================================================
 
+  //get alphabel and setup it into list
+  void getAlphabet() => setState(() => AlphabetLetter.alphabet.forEach((letter) => this.clickAlphabetLetters.add(AlphabetLetter(letter.toUpperCase(),false))));
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    getAlphabet();
     getWord();
   }
 }

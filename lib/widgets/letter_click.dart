@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LetterClick extends StatelessWidget {
+  final String title;
+  final bool isChoose;
+  LetterClick(this.title,this.isChoose);
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -17,7 +21,7 @@ class LetterClick extends StatelessWidget {
       alignment: Alignment.center,
       child: FittedBox(
         child: Text(
-        "A",style: theme.textTheme.headline6.copyWith(fontSize: 30.0),
+        this.title,style: theme.textTheme.headline6.copyWith(fontSize: 30.0),
         ),
       ),
     );
