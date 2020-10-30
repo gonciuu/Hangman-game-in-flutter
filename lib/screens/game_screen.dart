@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hangman/http/random_word.dart';
+import 'package:hangman/screens/win_screen.dart';
 import '../models/alphabel_letter.dart';
 import '../models/game.dart';
 import '../screens/lose_screen.dart';
@@ -197,10 +198,16 @@ class _GameScreenState extends State<GameScreen> {
 
       //reset time
       this.game.time = 30;
+
+      //win the game
+      if(guessedLetters.where((element) => element.isGuessed==false).isEmpty) win();
     });
   }
   //====================================================================================
 
+  //lose game
   void lose() => Navigator.pushReplacementNamed(context, LoseScreen.routeName,arguments: this.game.score);
+  //win game
+  void win() => Navigator.pushReplacementNamed(context, WinScreen.routeName,arguments: this.game.score);
 
 }
