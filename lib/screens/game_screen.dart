@@ -28,17 +28,18 @@ class _GameScreenState extends State<GameScreen> {
   //alphabet
   List<AlphabetLetter> clickAlphabetLetters = List();
 
+  //------------------| Start timer |---------------------
   void startTime(){
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
-        if(this.game.time<=0){
+        if(this.game.time<=0)
           lose();
-        }else{
+        else
           this.game.time--;
-        }
       });
     });
   }
+  //=======================================================
 
   @override
   Widget build(BuildContext context) {
@@ -171,6 +172,7 @@ class _GameScreenState extends State<GameScreen> {
       for (int i = 0; i < this.game.word.length; i++){
         if(this.game.word[i].toUpperCase() == title){
           guessedLetters[i].isGuessed = true;
+          this.game.score += this.game.time;
           isContains = true;
         }
       }
@@ -183,11 +185,12 @@ class _GameScreenState extends State<GameScreen> {
       if(this.game.lives<=0)
        lose();
 
+      //reset time
       this.game.time = 30;
     });
   }
   //====================================================================================
 
-  void lose() => Navigator.pushReplacementNamed(context, LoseScreen.routeName,arguments: {"score" : this.game.score});
+  void lose() => Navigator.pushReplacementNamed(context, LoseScreen.routeName,arguments: this.game.score);
 
 }
