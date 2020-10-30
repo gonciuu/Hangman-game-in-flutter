@@ -65,19 +65,29 @@ class _GameScreenState extends State<GameScreen> {
                     color: theme.primaryColor,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "lives : ${this.game.lives}",
-                          style: theme.textTheme.headline5,
-                        ),
-                        Image.network(
-                          'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Hangman.svg/1200px-Hangman.svg.png',
-                          fit: BoxFit.cover,
-                        ),
-                        Text(
-                          "0:${this.game.time<10 ? "0":""}${this.game.time}",
-                          style: theme.textTheme.headline5,
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "lives : ${this.game.lives}",
+                            style: theme.textTheme.headline5,
+                          ),
+                        ),SizedBox(width: 25.0,),
+                        Expanded(
+                          flex: 3,
+                          child: Center(
+                            child: Image.network(
+                              'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Hangman.svg/1200px-Hangman.svg.png',
+                            ),
+                          ),
+                        ),SizedBox(width: 25.0,),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            "0:${this.game.time<10 ? "0":""}${this.game.time}",
+                            style: theme.textTheme.headline5,
+                          ),
                         ),
                       ],
                     ),
