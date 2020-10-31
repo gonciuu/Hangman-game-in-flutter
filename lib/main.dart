@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screens/high_score_screen.dart';
 import './screens/win_screen.dart';
 import './screens/game_screen.dart';
 import './screens/lose_screen.dart';
@@ -27,7 +28,8 @@ class Hangman extends StatelessWidget {
         '/' : (context) => MainMenu(),
         GameScreen.routeName : (context) => GameScreen(),
         LoseScreen.routeName : (context) =>LoseScreen(),
-        WinScreen.routeName : (context) => WinScreen()
+        WinScreen.routeName : (context) => WinScreen(),
+        HighScoreScreen.routeName : (context) => HighScoreScreen()
       },
     );
   }

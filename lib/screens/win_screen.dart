@@ -25,7 +25,7 @@ class WinScreen extends StatelessWidget {
           splashColor: theme.primaryColor.withOpacity(0.3),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          onPressed: () {},
+          onPressed: () => Navigator.pushReplacementNamed(context, '/'),
           child: FittedBox(
             child: Text("Play Again",
                 style: theme.textTheme.headline6
@@ -41,7 +41,7 @@ class WinScreen extends StatelessWidget {
           splashColor: theme.primaryColor.withOpacity(0.3),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          onPressed: () {},
+          onPressed: () => Navigator.pushReplacementNamed(context, '/'),
           child: FittedBox(
             child: Text("Main Menu",
                 style: theme.textTheme.headline6

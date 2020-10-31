@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hangman/screens/game_screen.dart';
+import 'package:hangman/screens/high_score_screen.dart';
 
 class MainMenu extends StatelessWidget {
   @override
@@ -78,7 +79,7 @@ class MainMenu extends StatelessWidget {
                           child: FlatButton(
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-                            onPressed: () {  },
+                            onPressed: ()=>Navigator.pushNamed(context, HighScoreScreen.routeName),
                             child: FittedBox(
                               child: Text("High scores",style: theme
                                   .textTheme

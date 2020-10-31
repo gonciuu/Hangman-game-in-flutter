@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hangman/http/random_word.dart';
 import 'package:hangman/screens/win_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/alphabel_letter.dart';
 import '../models/game.dart';
 import '../screens/lose_screen.dart';
@@ -207,7 +208,21 @@ class _GameScreenState extends State<GameScreen> {
 
   //lose game
   void lose() => Navigator.pushReplacementNamed(context, LoseScreen.routeName,arguments: this.game.score);
+
   //win game
-  void win() => Navigator.pushReplacementNamed(context, WinScreen.routeName,arguments: this.game.score);
+  void win() {
+    checkHighScore();
+    Navigator.pushReplacementNamed(context, WinScreen.routeName,arguments: this.game.score);
+  }
+
+
+
+  //---------------------| Check if the game score is higher than the actual highscore |-------------------------------
+  Future checkHighScore() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    if(this.game.score >= (_prefs.getInt("highScore") ?? 0))
+      await _prefs.setInt("highScore",this.game.score);
+  }
+  //===================================================================================================================
 
 }
