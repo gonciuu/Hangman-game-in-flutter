@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/screens/type_word_screen.dart';
 import './screens/high_score_screen.dart';
 import './screens/win_screen.dart';
 import './screens/game_screen.dart';
@@ -25,7 +26,7 @@ class Hangman extends StatelessWidget {
               headline6: TextStyle(fontSize: 18.0, color: Colors.white))),
       initialRoute: "/",
       routes: {
-        '/' : (context) => MainMenu(),
+        '/' : (context) => TypeWordScreen(),
         GameScreen.routeName : (context) => GameScreen(),
         LoseScreen.routeName : (context) =>LoseScreen(),
         WinScreen.routeName : (context) => WinScreen(),
