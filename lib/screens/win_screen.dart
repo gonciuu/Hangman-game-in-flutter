@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/screens/game_screen.dart';
 
 class WinScreen extends StatelessWidget {
   static const routeName = "/win-screen";
@@ -25,7 +26,8 @@ class WinScreen extends StatelessWidget {
           splashColor: theme.primaryColor.withOpacity(0.3),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          onPressed: () => Navigator.pushReplacementNamed(context, '/'),
+          onPressed: () => Navigator.of(context)
+              .pushNamedAndRemoveUntil(GameScreen.routeName, (route) => false),
           child: FittedBox(
             child: Text("Play Again",
                 style: theme.textTheme.headline6
@@ -41,7 +43,8 @@ class WinScreen extends StatelessWidget {
           splashColor: theme.primaryColor.withOpacity(0.3),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          onPressed: () => Navigator.pushReplacementNamed(context, '/'),
+          onPressed: () => Navigator.of(context)
+              .pushNamedAndRemoveUntil("/", (route) => false),
           child: FittedBox(
             child: Text("Main Menu",
                 style: theme.textTheme.headline6

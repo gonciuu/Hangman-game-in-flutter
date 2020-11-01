@@ -32,8 +32,10 @@ class HighScoreScreen extends StatelessWidget {
     );
   }
 
+  //--------------| Get current user highscore |----------------
   Future getHighScore() async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return  prefs.getInt('highScore' ?? 0);
   }
+  //=============================================================
 }

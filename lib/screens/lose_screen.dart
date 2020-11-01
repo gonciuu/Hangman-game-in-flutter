@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/screens/game_screen.dart';
 import 'package:hangman/screens/main_menu_screen.dart';
 
 class LoseScreen extends StatelessWidget {
@@ -6,7 +7,11 @@ class LoseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String points = ModalRoute.of(context).settings.arguments.toString();
+    final String points = ModalRoute
+        .of(context)
+        .settings
+        .arguments
+        .toString();
     final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: theme.accentColor,
@@ -24,7 +29,7 @@ class LoseScreen extends StatelessWidget {
               "YOU\nLOSE",
               textAlign: TextAlign.center,
               style:
-                  theme.textTheme.headline1.copyWith(color: theme.primaryColor),
+              theme.textTheme.headline1.copyWith(color: theme.primaryColor),
             ),
             SizedBox(
               height: 30,
@@ -39,6 +44,21 @@ class LoseScreen extends StatelessWidget {
               },
               child: FittedBox(
                 child: Text("Main Menu", style: theme.textTheme.headline5),
+              ),
+              color: theme.primaryColor,
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+            ), SizedBox(height: 15,),
+            FlatButton(
+              splashColor: theme.primaryColor.withOpacity(0.3),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(
+                    GameScreen.routeName, (route) => false);
+              },
+              child: FittedBox(
+                child: Text("Play Again", style: theme.textTheme.headline5),
               ),
               color: theme.primaryColor,
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),

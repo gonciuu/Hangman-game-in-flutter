@@ -116,16 +116,18 @@ class _GameScreenState extends State<GameScreen> {
                   SizedBox(
                     height: deviceHeight * 0.1,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //setup word in guessLetter widget
-                      ...this
-                          .guessedLetters
-                          .map((letter) =>
-                              GuessLetter(letter.title, letter.isGuessed))
-                          .toList()
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Wrap(
+                      children: [
+                        //setup word in guessLetter widget
+                        ...this
+                            .guessedLetters
+                            .map((letter) =>
+                                GuessLetter(letter.title, letter.isGuessed))
+                            .toList()
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: deviceHeight * 0.1,
