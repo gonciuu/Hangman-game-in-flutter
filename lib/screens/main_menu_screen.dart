@@ -41,9 +41,8 @@ class MainMenu extends StatelessWidget {
                           child: FlatButton(
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-                            onPressed: () {
-                              Navigator.pushNamed(context, GameScreen.routeName,arguments: "");
-                            },
+                            onPressed: () => Navigator.pushNamed(context, GameScreen.routeName,arguments: "")
+                            ,
                             child: FittedBox(
                               child: Text("1 Player",style: theme
                                   .textTheme
@@ -60,7 +59,7 @@ class MainMenu extends StatelessWidget {
                           child: FlatButton(
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-                            onPressed: () =>Navigator.pushNamed(context, TypeWordScreen.routeName),
+                            onPressed: () => Navigator.pushNamed(context, TypeWordScreen.routeName),
                             child: FittedBox(
                               child: Text("2 Players",style: theme
                                   .textTheme
@@ -81,7 +80,7 @@ class MainMenu extends StatelessWidget {
                           child: FlatButton(
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-                            onPressed: ()=>Navigator.pushNamed(context, HighScoreScreen.routeName),
+                            onPressed: ()=> Navigator.pushNamed(context, HighScoreScreen.routeName),
                             child: FittedBox(
                               child: Text("High scores",style: theme
                                   .textTheme

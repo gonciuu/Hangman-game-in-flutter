@@ -151,7 +151,7 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  //----------------| Get random word |---------------------
+  //----------------| Get random word or word from user typing|---------------------
   Future getWord(BuildContext context) async {
     String routeWord = (ModalRoute.of(context).settings.arguments as String);
     if(routeWord==""){
@@ -166,6 +166,7 @@ class _GameScreenState extends State<GameScreen> {
         guessedLetters.add(GuessLetterModel(this.game.word[i], false));
       }
 
+      //if word contains space mark it as guessed
       guessedLetters.forEach((element) => element.title==" " ? element.isGuessed = true : element.isGuessed = false);
       getAlphabet();
     });
@@ -223,12 +224,18 @@ class _GameScreenState extends State<GameScreen> {
   //====================================================================================
 
   //lose game
-  void lose() => Navigator.pushReplacementNamed(context, LoseScreen.routeName,arguments: this.game.score);
+  void lose() => Navigator.pushReplacementNamed(context, LoseScreen.routeName,arguments: {
+    "score": this.game.score,
+    "word" : (ModalRoute.of(context).settings.arguments as String)
+  });
 
   //win game
   void win() {
     checkHighScore();
-    Navigator.pushReplacementNamed(context, WinScreen.routeName,arguments: this.game.score);
+    Navigator.pushReplacementNamed(context, WinScreen.routeName,arguments: {
+      "score": this.game.score,
+      "word" : (ModalRoute.of(context).settings.arguments as String)
+    });
   }
 
 

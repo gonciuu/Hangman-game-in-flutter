@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hangman/screens/game_screen.dart';
-import 'package:hangman/screens/main_menu_screen.dart';
+import '../screens/game_screen.dart';
+import '../screens/type_word_screen.dart';
 
 class LoseScreen extends StatelessWidget {
   static const String routeName = '/lose-screen';
 
+
   @override
   Widget build(BuildContext context) {
-    final String points = ModalRoute
-        .of(context)
-        .settings
-        .arguments
-        .toString();
+    final data = ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    final String word = data['word'];
+    final int score = data['score'];
+
+
     final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: theme.accentColor,
@@ -29,7 +30,14 @@ class LoseScreen extends StatelessWidget {
               "YOU\nLOSE",
               textAlign: TextAlign.center,
               style:
-              theme.textTheme.headline1.copyWith(color: theme.primaryColor),
+              theme.textTheme.headline1.copyWith(color: theme.primaryColor,fontSize: 50.0),
+            ),
+
+            Text(
+              "Your score : $score",
+              textAlign: TextAlign.center,
+              style:
+              theme.textTheme.headline1.copyWith(color: theme.primaryColor,fontSize: 24.0),
             ),
             SizedBox(
               height: 30,
@@ -52,11 +60,7 @@ class LoseScreen extends StatelessWidget {
               splashColor: theme.primaryColor.withOpacity(0.3),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0)),
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil(
-                    GameScreen.routeName, (route) => false);
-              },
+                onPressed: () => Navigator.pushReplacementNamed(context, word=="" ? GameScreen.routeName : TypeWordScreen.routeName,arguments: "")  ,
               child: FittedBox(
                 child: Text("Play Again", style: theme.textTheme.headline5),
               ),
