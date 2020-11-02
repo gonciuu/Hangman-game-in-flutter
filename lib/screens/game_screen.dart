@@ -47,6 +47,7 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final deviceHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: theme.accentColor,
       body: SafeArea(
@@ -151,13 +152,19 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   //----------------| Get random word |---------------------
-  Future getWord() async {
-    Map map = await _randomWordApi.getWord();
+  Future getWord(BuildContext context) async {
+    String routeWord = (ModalRoute.of(context).settings.arguments as String);
+    if(routeWord==""){
+      Map map = await _randomWordApi.getWord();
+      setState(() => this.game.word = map['word']);
+    }else{
+      setState(() => this.game.word = routeWord);
+    }
+
     setState(() {
-      this.game.word = map['word'];
       for (int i = 0; i < this.game.word.length; i++)
         guessedLetters.add(GuessLetterModel(this.game.word[i], false));
-        getAlphabet();
+      getAlphabet();
     });
     startTime();
   }
@@ -170,7 +177,9 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    getWord();
+    Future.delayed(Duration.zero,() {
+      getWord(context);
+    });
   }
   @override
   void dispose() {

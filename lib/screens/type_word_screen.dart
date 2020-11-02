@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/screens/game_screen.dart';
 
 class TypeWordScreen extends StatefulWidget {
+  static const routeName = "/type-word-screen";
   @override
   _TypeWordScreenState createState() => _TypeWordScreenState();
 }
 
 class _TypeWordScreenState extends State<TypeWordScreen> {
+  final TextEditingController _wordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +27,8 @@ class _TypeWordScreenState extends State<TypeWordScreen> {
               padding: EdgeInsets.symmetric(horizontal: 30.0),
               width: double.infinity,
               child: TextField(
+                controller: _wordController,
+                onSubmitted: (str )=> _submitWord(),
                 cursorColor: Theme.of(context).primaryColor,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
@@ -49,7 +54,7 @@ class _TypeWordScreenState extends State<TypeWordScreen> {
               splashColor: Theme.of(context).primaryColor.withOpacity(0.3),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0)),
-              onPressed: ((){}),
+              onPressed: _submitWord,
               child: FittedBox(
                 child: Text("Confirm",
                     style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.grey[900])),
@@ -61,5 +66,8 @@ class _TypeWordScreenState extends State<TypeWordScreen> {
         ],
       ),
     );
+
   }
+  void _submitWord() => Navigator.pushReplacementNamed(context, GameScreen.routeName,arguments: _wordController.text.toLowerCase()??"");
+
 }

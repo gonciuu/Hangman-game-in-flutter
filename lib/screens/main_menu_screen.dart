@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hangman/screens/game_screen.dart';
 import 'package:hangman/screens/high_score_screen.dart';
+import 'package:hangman/screens/type_word_screen.dart';
 
 class MainMenu extends StatelessWidget {
   @override
@@ -40,7 +41,7 @@ class MainMenu extends StatelessWidget {
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
                             onPressed: () {
-                              Navigator.pushNamed(context, GameScreen.routeName);
+                              Navigator.pushNamed(context, GameScreen.routeName,arguments: "");
                             },
                             child: FittedBox(
                               child: Text("1 Player",style: theme
@@ -58,7 +59,7 @@ class MainMenu extends StatelessWidget {
                           child: FlatButton(
                             splashColor: theme.primaryColor.withOpacity(0.3),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-                            onPressed: () {  },
+                            onPressed: () =>Navigator.pushNamed(context, TypeWordScreen.routeName),
                             child: FittedBox(
                               child: Text("2 Players",style: theme
                                   .textTheme

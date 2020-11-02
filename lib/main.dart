@@ -26,11 +26,12 @@ class Hangman extends StatelessWidget {
               headline6: TextStyle(fontSize: 18.0, color: Colors.white))),
       initialRoute: "/",
       routes: {
-        '/' : (context) => TypeWordScreen(),
+        '/' : (context) => MainMenu(),
         GameScreen.routeName : (context) => GameScreen(),
         LoseScreen.routeName : (context) =>LoseScreen(),
         WinScreen.routeName : (context) => WinScreen(),
-        HighScoreScreen.routeName : (context) => HighScoreScreen()
+        HighScoreScreen.routeName : (context) => HighScoreScreen(),
+        TypeWordScreen.routeName : (context) => TypeWordScreen()
       },
     );
   }

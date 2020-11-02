@@ -16,7 +16,7 @@ class GuessLetter extends StatelessWidget {
       child: Column(
         children: [
           Text(isGuessed ? this.title : "",style: theme.textTheme.headline6.copyWith(fontSize: 24.0),),
-          Container(color: theme.primaryColor, width: 30,height: 2,)
+          Container( color: title!=" " ? theme.primaryColor: Colors.transparent, width: 30,height: 2,)
         ],
       ),
     );
