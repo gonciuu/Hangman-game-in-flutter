@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hangman/screens/type_word_screen.dart';
+import './screens/info_screen.dart';
+import './screens/type_word_screen.dart';
 import './screens/high_score_screen.dart';
 import './screens/win_screen.dart';
 import './screens/game_screen.dart';
@@ -31,7 +32,8 @@ class Hangman extends StatelessWidget {
         LoseScreen.routeName : (context) =>LoseScreen(),
         WinScreen.routeName : (context) => WinScreen(),
         HighScoreScreen.routeName : (context) => HighScoreScreen(),
-        TypeWordScreen.routeName : (context) => TypeWordScreen()
+        TypeWordScreen.routeName : (context) => TypeWordScreen(),
+        InfoScreen.routeName : (context) => InfoScreen()
       },
     );
   }

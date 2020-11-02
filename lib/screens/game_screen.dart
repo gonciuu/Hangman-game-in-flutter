@@ -153,26 +153,28 @@ class _GameScreenState extends State<GameScreen> {
 
   //----------------| Get random word or word from user typing|---------------------
   Future getWord(BuildContext context) async {
-    String routeWord = (ModalRoute.of(context).settings.arguments as String);
-    if(routeWord==""){
-      Map map = await _randomWordApi.getWord();
-      setState(() => this.game.word = map['word']);
-    }else{
-      setState(() => this.game.word = routeWord);
-    }
-
-    setState(() {
-      for (int i = 0; i < this.game.word.length; i++){
-        guessedLetters.add(GuessLetterModel(this.game.word[i], false));
+    try{
+      String routeWord = (ModalRoute.of(context).settings.arguments as String);
+      if(routeWord==""){
+        Map map = await _randomWordApi.getWord();
+        setState(() => this.game.word = map['word']);
+      }else{
+        setState(() => this.game.word = routeWord);
       }
 
-      //if word contains space mark it as guessed
-      guessedLetters.forEach((element) => element.title==" " ? element.isGuessed = true : element.isGuessed = false);
-      getAlphabet();
-    });
+      setState(() {
+        for (int i = 0; i < this.game.word.length; i++){
+          guessedLetters.add(GuessLetterModel(this.game.word[i], false));
+        }
+
+        //if word contains space mark it as guessed
+        guessedLetters.forEach((element) => element.title==" " ? element.isGuessed = true : element.isGuessed = false);
+        getAlphabet();
+      });
 
 
-    startTime();
+      startTime();
+    }catch(e){}
   }
 
   //========================================================
@@ -190,7 +192,8 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void dispose() {
     super.dispose();
-    _timer.cancel();
+    if(_timer!=null)
+      _timer.cancel();
   }
 
   //---------------------| handle alphabet letter click |------------------------------
