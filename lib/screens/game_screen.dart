@@ -162,10 +162,15 @@ class _GameScreenState extends State<GameScreen> {
     }
 
     setState(() {
-      for (int i = 0; i < this.game.word.length; i++)
+      for (int i = 0; i < this.game.word.length; i++){
         guessedLetters.add(GuessLetterModel(this.game.word[i], false));
+      }
+
+      guessedLetters.forEach((element) => element.title==" " ? element.isGuessed = true : element.isGuessed = false);
       getAlphabet();
     });
+
+
     startTime();
   }
 

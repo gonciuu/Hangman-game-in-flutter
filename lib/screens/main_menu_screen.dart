@@ -12,6 +12,7 @@ class MainMenu extends StatelessWidget {
     return Scaffold(
         backgroundColor: theme.accentColor,
         body: Column(
+          mainAxisSize:MainAxisSize.max ,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

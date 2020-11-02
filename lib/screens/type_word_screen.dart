@@ -17,7 +17,7 @@ class _TypeWordScreenState extends State<TypeWordScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Player 1 typing",
+            "Type the word",
             style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 28),
           ),
           SizedBox(
