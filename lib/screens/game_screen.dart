@@ -101,7 +101,7 @@ class _GameScreenState extends State<GameScreen> {
                       alignment: Alignment.bottomLeft,
                       child: FittedBox(
                         child: Text(
-                          game.word,
+                          "score : ${game.score}",
                           style: TextStyle(
                               fontSize: 20.0,
                               color: theme.primaryColor,
@@ -229,7 +229,8 @@ class _GameScreenState extends State<GameScreen> {
   //lose game
   void lose() => Navigator.pushReplacementNamed(context, LoseScreen.routeName,arguments: {
     "score": this.game.score,
-    "word" : (ModalRoute.of(context).settings.arguments as String)
+    "word" : (ModalRoute.of(context).settings.arguments as String),
+    "guessedWord" : game.word
   });
 
   //win game
@@ -237,7 +238,8 @@ class _GameScreenState extends State<GameScreen> {
     checkHighScore();
     Navigator.pushReplacementNamed(context, WinScreen.routeName,arguments: {
       "score": this.game.score,
-      "word" : (ModalRoute.of(context).settings.arguments as String)
+      "word" : (ModalRoute.of(context).settings.arguments as String),
+      "guessedWord" : game.word
     });
   }
 

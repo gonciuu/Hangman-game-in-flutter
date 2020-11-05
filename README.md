@@ -1,5 +1,5 @@
 # Hangman
-# Hangman Game in Flutter
+### Hangman Game in Flutter
 
 A new Flutter application.
 

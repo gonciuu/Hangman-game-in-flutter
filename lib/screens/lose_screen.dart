@@ -11,6 +11,7 @@ class LoseScreen extends StatelessWidget {
     final data = ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
     final String word = data['word'];
     final int score = data['score'];
+    final String guessedWord = data['guessedWord'];
 
 
     final theme = Theme.of(context);
@@ -35,6 +36,12 @@ class LoseScreen extends StatelessWidget {
 
             Text(
               "Your score : $score",
+              textAlign: TextAlign.center,
+              style:
+              theme.textTheme.headline1.copyWith(color: theme.primaryColor,fontSize: 24.0),
+            ),SizedBox(height: 10,),
+            Text(
+              "Word : $guessedWord",
               textAlign: TextAlign.center,
               style:
               theme.textTheme.headline1.copyWith(color: theme.primaryColor,fontSize: 24.0),

@@ -9,19 +9,22 @@ class WinScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final data = ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    final data =
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
     final String word = data['word'];
     final int score = data['score'];
+    final String guessedWord = data['guessedWord'];
 
     return Scaffold(
       backgroundColor: theme.accentColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-           children: [
+          children: [
             Text(
               "You win",
-              style: theme.textTheme.headline1.copyWith(color: theme.primaryColor),
+              style:
+                  theme.textTheme.headline1.copyWith(color: theme.primaryColor),
             ),
             Text(
               "Your score: $score",
@@ -29,13 +32,24 @@ class WinScreen extends StatelessWidget {
                   .copyWith(color: theme.primaryColor, fontSize: 28),
             ),
             SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Word : $guessedWord",
+              textAlign: TextAlign.center,
+              style: theme.textTheme.headline1
+                  .copyWith(color: theme.primaryColor, fontSize: 24.0),
+            ),
+            SizedBox(
               height: 30,
             ),
             FlatButton(
               splashColor: theme.primaryColor.withOpacity(0.3),
-              shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-              onPressed: () => Navigator.pushReplacementNamed(context, word=="" ? GameScreen.routeName : TypeWordScreen.routeName,arguments: "")  ,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              onPressed: () => Navigator.pushReplacementNamed(context,
+                  word == "" ? GameScreen.routeName : TypeWordScreen.routeName,
+                  arguments: ""),
               child: FittedBox(
                 child: Text("Play Again",
                     style: theme.textTheme.headline6
@@ -49,8 +63,8 @@ class WinScreen extends StatelessWidget {
             ),
             FlatButton(
               splashColor: theme.primaryColor.withOpacity(0.3),
-              shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
               onPressed: () => Navigator.of(context)
                   .pushNamedAndRemoveUntil("/", (route) => false),
               child: FittedBox(
