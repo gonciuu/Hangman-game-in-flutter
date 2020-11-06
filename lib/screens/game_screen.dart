@@ -80,8 +80,8 @@ class _GameScreenState extends State<GameScreen> {
                         Expanded(
                           flex: 3,
                           child: Center(
-                            child: Image.network(
-                              'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Hangman.svg/1200px-Hangman.svg.png',
+                            child: Image.asset(
+                              'assets/images/${10-game.lives}.png',
                             ),
                           ),
                         ),SizedBox(width: 25.0,),

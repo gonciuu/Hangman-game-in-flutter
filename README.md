@@ -25,7 +25,6 @@ For help getting started with Flutter, view our
 - use maps and lists
 - custom classes and widgets
 - using forms, dialogs, input decorations
-- using bottom sheets
 - save data to shared preferences
 - navigation with named routes
 - get word from api
