@@ -31,11 +31,11 @@ For help getting started with Flutter, view our
 
 ## Screenshots :
 
-<img src="screenshots/menu.png">
-<img src="screenshots/game.png">
-<img src="screenshots/win.png">
-<img src="screenshots/type_word.png">
-<img src="screenshots/high_score.png">
-<img src="screenshots/info.png">
+<img src="screenshots/menu.png" width="40%">
+<img src="screenshots/game.png" width="40%">
+<img src="screenshots/win.png" width="40%">
+<img src="screenshots/type_word.png" width="40%">
+<img src="screenshots/high_score.png" width="40%">
+<img src="screenshots/info.png" width="40%">
 
 ## Thanks for reading. Don't forget to star my project
